@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaz;
 
+import comun.DirectorioContactos;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
@@ -14,17 +10,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-/**
- *
- * @author estudiante
- */
+
 public class panelDatos extends JPanel {
 
     private JLabel lblnombre,lbltelefono,lblpostal,lblemail;
     private JTextField txtnombre,txttelefono,txtpostal,txtemail;
+    private InterfazDirectorioContactos ventanaPrincipal;
 
-    public panelDatos() {
+    public panelDatos(InterfazDirectorioContactos interfaz) {
 
+        ventanaPrincipal=interfaz;
         lblnombre = new JLabel("Nombre del Contacto:", SwingConstants.LEFT);
         txtnombre = new JTextField();
         lbltelefono = new JLabel("Teléfono del Contacto:", SwingConstants.LEFT);
