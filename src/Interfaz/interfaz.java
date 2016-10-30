@@ -43,7 +43,7 @@ public class interfaz extends JFrame {
     }
 
     public void cerrarVentana() {
-        int response = JOptionPane.showOptionDialog(this, "Desea cerrar la ventana",
+        int response = JOptionPane.showOptionDialog(this, "Desea cerrar la ventana?",
                 "Cerrar Ventana",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null,
