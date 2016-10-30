@@ -1,5 +1,8 @@
 
 import Interfaz.interfaz;
+import arboles.DirectorioDeContactos;
+import comun.Contacto;
+
 import javax.swing.JFrame;
 
 /*
@@ -25,6 +28,21 @@ public class Principal {
         interfazContacto.setVisible( true ); // muestra el marco
         interfazContacto.setResizable(false);
         interfazContacto.setLocationRelativeTo(null);
+        DirectorioDeContactos<Contacto> directorio = new DirectorioDeContactos<>();
+        directorio.add(new Contacto("Andres","","",""));
+        directorio.add(new Contacto("Bernardo","","",""));
+        directorio.add(new Contacto("Camilo","","",""));
+        directorio.add(new Contacto("Duber","","",""));
+        directorio.add(new Contacto("Eduard","","",""));
+        directorio.add(new Contacto("Fernando","","",""));
+        directorio.add(new Contacto("Gabriela","","",""));
+        directorio.add(new Contacto("Alberto","","",""));
+        directorio.add(new Contacto("Ana","","",""));
+        directorio.add(new Contacto("Bibiana","","",""));
+
+
+        System.out.println(directorio.ordenAlfabetico());
+        directorio.jerarquia();
     }
 
 }

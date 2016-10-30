@@ -50,7 +50,7 @@ public class Contacto implements Comparable<Contacto>{
 
     @Override
     public int compareTo( Contacto contacto ){
-        int cmp = this.nombre.compareTo(contacto.nombre);
+        int cmp = this.nombre.toLowerCase().compareTo(contacto.nombre.toLowerCase());
 
         if (cmp < 0) {
             return -1;
@@ -63,11 +63,6 @@ public class Contacto implements Comparable<Contacto>{
 
     @Override
     public String toString() {
-        return "Contacto{" +
-                "nombre='" + nombre + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", direccionPostal='" + direccionPostal + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return nombre+" " + telefono + " "+ direccionPostal + " "+ email;
     }
 }
