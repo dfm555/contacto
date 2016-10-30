@@ -7,4 +7,6 @@
 *.iml
 out
 .idea/
-
+*.xml
+*.mf
+nbproject/
