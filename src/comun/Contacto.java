@@ -3,11 +3,14 @@ package comun;
 /**
  * Created by duber on 30/10/16.
  */
-public class Contacto implements Comparable<Contacto>{
+public class Contacto implements Comparable<Contacto> {
+
     private String nombre;
     private String telefono;
     private String direccionPostal;
     private String email;
+
+    public Contacto() {}
 
     public Contacto(String nombre, String telefono, String direccionPostal, String email) {
         this.nombre = nombre;
@@ -63,11 +66,10 @@ public class Contacto implements Comparable<Contacto>{
 
     @Override
     public String toString() {
-        return "Contacto{" +
-                "nombre='" + nombre + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", direccionPostal='" + direccionPostal + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return "Contacto { " +
+                "nombre='" + nombre + "'" +
+                ", telefono='" + telefono + "'" +
+                ", direccionPostal='" + direccionPostal + "'" +
+                ", email='" + email + "'" + '}';
     }
 }
