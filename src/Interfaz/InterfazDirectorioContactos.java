@@ -62,15 +62,54 @@ public class InterfazDirectorioContactos extends JFrame {
         });
     }
 
-    public void adicionarContactoDirectorio(String nombre, String telefono, String postal, String email) {
+    public void adicionarContactoDirectorio() {
+        String nombre, telefono, postal, email;
+        nombre = panelDatos.getTxtNombre();
+        telefono = panelDatos.getTxtTelefono();
+        postal = panelDatos.getTxtPostal();        
+        email = panelDatos.getTxtEmail();
+
+        if (nombre == null || nombre.equals("")) {
+            JOptionPane.showMessageDialog(this, "El nombre no puede ser vacío", "Adicionar un Contacto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (telefono == null || telefono.equals("")) {
+            JOptionPane.showMessageDialog(this, "El teléfono no puede ser vacío", "Adicionar un Contacto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+         if (postal == null || postal.equals("")) {
+            JOptionPane.showMessageDialog(this, "La dirección postal no puede ser vacía", "Adicionar un Contacto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+         if (email == null || email.equals("")) {
+            JOptionPane.showMessageDialog(this, "El Email no puede ser vacío", "Adicionar un Contacto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (existeContacto(nombre)) {
+            JOptionPane.showMessageDialog(this, "Ya existe un contacto con el mismo Nombre", "Adicionar un Contacto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        
         Contacto nuevoContacto = new Contacto(nombre, telefono, postal, email);
         directorio.adicionarContactoDirectorio(nuevoContacto);
         panelDirectorio.actualizarDirectorio();
+        panelDatos.setTxtNombre("");
+        panelDatos.setTxtTelefono("");
+        panelDatos.setTxtPostal("");
+        panelDatos.setTxtEmail("");
+        
     }
 
-    public boolean existeContacto(Contacto contacto) {
+    public void mostrarContactosAlfabeticamente(){
+        panelResultado.mostrarResultado(directorio.ordenAlfabetico());
+    }
+    public boolean existeContacto(String nombre) {
         boolean esta = false;
-        Contacto contactoObtenido = directorio.buscarContacto(contacto);
+        Contacto contactoObtenido = directorio.buscarContacto(nombre);
         if (null != contactoObtenido) {
             esta = true;
         }

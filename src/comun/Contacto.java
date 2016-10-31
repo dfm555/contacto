@@ -47,7 +47,10 @@ public class Contacto implements Comparable<Contacto>{
     public void setEmail(String email) {
         this.email = email;
     }
-
+    public boolean igualContacto(String otroNombre) {
+        boolean iguales = nombre.equals(otroNombre);
+        return iguales;
+    }
     @Override
     public int compareTo( Contacto contacto ){
         int cmp = this.nombre.compareTo(contacto.nombre);
