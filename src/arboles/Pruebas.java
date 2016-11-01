@@ -2,6 +2,8 @@ package arboles;
 
 import comun.Contacto;
 
+import java.util.Map;
+
 /**
  * Created by Developer on 10/30/16.
  */
@@ -28,5 +30,10 @@ public class Pruebas {
         Contacto cIsa = new Contacto("Isabel", "3126577562", "Carrera 66", "carlosrestrepo.315@gmail.com");
         Contacto cMaria = new Contacto("Maria", "3017654567", "Carrera 66", "carlosrestrepo.315@gmail.com");
         System.out.println(cIsa.compareTo(cMaria));
+
+        Map<Integer, Integer> niveles = directorio.obtenerNodosPorNivel();
+        for (int i = 0; i < niveles.size(); i++) {
+            System.out.println("En el nivel " + i + " hay : " + niveles.get(i) + " nodos.");
+        }
     }
 }
