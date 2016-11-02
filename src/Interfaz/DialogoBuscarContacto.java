@@ -59,7 +59,7 @@ public class DialogoBuscarContacto extends JDialog  implements ActionListener{
     public void actionPerformed(ActionEvent evento) {
         String actionCommand = evento.getActionCommand();
 
-        // Bot�n buscar
+        // Boton buscar
         if (actionCommand.equals("BUSCAR")) {
             accionAlBuscar();
         }
