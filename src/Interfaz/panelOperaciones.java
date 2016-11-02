@@ -102,7 +102,7 @@ public class panelOperaciones extends JPanel implements ActionListener {
         if (actionCommand.equals("2(E)")) {
             ventanaPrincipal.mostrarContactosAlfabeticamente();
         }
-         // Boton punto 2-f
+         // Boton punto 2f
         if (actionCommand.equals("2(F)")) {
             ventanaPrincipal.mostrarContactosAlfabeticamente();
         }
