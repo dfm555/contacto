@@ -18,14 +18,15 @@ import java.awt.event.WindowEvent;
 
 public class InterfazDirectorioContactos extends JFrame {
 
-    private PanelDirectorioContactos panelDirectorio;
-    private PanelResultado panelResultado;
-
+    private final PanelDirectorioContactos panelDirectorio;
+    private final PanelResultado panelResultado;
+    private DialogoBuscarContacto dialogoBuscar;
+    private DialogoEliminarContacto dialogoEliminar;
     private Contacto contactos;
-    private DirectorioContactos directorio;
-    private panelOperaciones panelOperaciones;
-    private panelDatos panelDatos;
-    
+    private final DirectorioContactos directorio;
+    private final panelOperaciones panelOperaciones;
+    private final panelDatos panelDatos;
+
     public InterfazDirectorioContactos() {
 
         directorio = new DirectorioContactos();
@@ -38,21 +39,22 @@ public class InterfazDirectorioContactos extends JFrame {
         panelOperaciones = new panelOperaciones(this);
         panelSuperior.add(panelDatos, BorderLayout.NORTH);
         panelSuperior.add(panelDirectorio, BorderLayout.CENTER);
-        panelCentral.add(panelResultado,BorderLayout.CENTER);
+        panelCentral.add(panelResultado, BorderLayout.CENTER);
         JPanel panelInferior = new JPanel(new BorderLayout());
-        panelInferior.add(panelOperaciones,BorderLayout.CENTER);
-
+        panelInferior.add(panelOperaciones, BorderLayout.CENTER);
+        dialogoBuscar = new DialogoBuscarContacto(this );
+        dialogoEliminar = new DialogoEliminarContacto(this );
         setPreferredSize(new Dimension(700, 500));
 
         add(panelSuperior, BorderLayout.NORTH);
-        add(panelCentral,BorderLayout.CENTER);
+        add(panelCentral, BorderLayout.CENTER);
         add(panelInferior, BorderLayout.SOUTH);
         setTitle("Directorio de Contactos");
         pack();
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        
+
         this.addWindowListener(new WindowAdapter() {
 
             @Override
@@ -61,26 +63,93 @@ public class InterfazDirectorioContactos extends JFrame {
             }
         });
     }
+    //dialogo para busca contacto
+    public void abrirDialogoBuscarContacto() {
+        dialogoBuscar.setLocation(calculaPosicionCentral(this, dialogoBuscar));
+        dialogoBuscar.setVisible(true);
+        dialogoBuscar.setModal(true);
+    }
+     public void abrirDialogoEliminarContacto() {
+        dialogoEliminar.setLocation(calculaPosicionCentral(this, dialogoEliminar));
+        dialogoEliminar.setVisible(true);
+        dialogoEliminar.setModal(true);
+    }
+    public void adicionarContactoDirectorio() {
+        String nombre, telefono, postal, email;
+        nombre = panelDatos.getTxtNombre();
+        telefono = panelDatos.getTxtTelefono();
+        postal = panelDatos.getTxtPostal();
+        email = panelDatos.getTxtEmail();
 
-    public void adicionarContactoDirectorio(String nombre, String telefono, String postal, String email) {
+        if (nombre == null || nombre.equals("")) {
+            JOptionPane.showMessageDialog(this, "El nombre no puede ser vacío", "Adicionar un Contacto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (telefono == null || telefono.equals("")) {
+            JOptionPane.showMessageDialog(this, "El teléfono no puede ser vacío", "Adicionar un Contacto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (postal == null || postal.equals("")) {
+            JOptionPane.showMessageDialog(this, "La dirección postal no puede ser vacía", "Adicionar un Contacto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (email == null || email.equals("")) {
+            JOptionPane.showMessageDialog(this, "El Email no puede ser vacío", "Adicionar un Contacto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (existeContacto(nombre)) {
+            JOptionPane.showMessageDialog(this, "Ya existe un contacto con el mismo Nombre", "Adicionar un Contacto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        
         Contacto nuevoContacto = new Contacto(nombre, telefono, postal, email);
         directorio.adicionarContactoDirectorio(nuevoContacto);
         panelDirectorio.actualizarDirectorio();
+        panelDatos.setTxtNombre("");
+        panelDatos.setTxtTelefono("");
+        panelDatos.setTxtPostal("");
+        panelDatos.setTxtEmail("");
+
     }
 
-    public boolean existeContacto(Contacto contacto) {
+    public void mostrarContactosAlfabeticamente() {
+        String resultado = directorio.ordenAlfabetico();
+        panelResultado.mostrarResultado(resultado);
+    }
+
+    public void mostrarJerarquiaArbol() {
+        String resultado = directorio.jerarquia();
+        panelResultado.mostrarResultado(resultado);
+    }
+
+    public void buscarContactoPorNombre(String nombre) {
+        String resultado = directorio.buscarPorNombre(nombre);
+        panelResultado.mostrarResultado(resultado);
+    }
+
+    public boolean existeContacto(String nombre) {
         boolean esta = false;
-        Contacto contactoObtenido = directorio.buscarContacto(contacto);
+        Contacto contactoObtenido = directorio.buscarContacto(nombre);
         if (null != contactoObtenido) {
             esta = true;
         }
         return esta;
     }
 
-    public void borrarContacto(Contacto contacto) {
-
+    public void eliminarContactoDirectorio(String nombre) {
+        String resultado = directorio.remove(nombre);
+        panelResultado.mostrarResultado(resultado);
+        panelDirectorio.actualizarDirectorio();
+        
     }
-
+    public void obtenerElNumeroDeNodosPorNivel(){
+        String resultado = directorio.obtenerNodosPorNivel();
+        panelResultado.mostrarResultado(resultado);
+    }
     private Point calculaPosicionCentral(Component componentePadre, Component componenteHijo) {
         Dimension tamanoPantalla, tamanoPadre, tamanoHijo;
         Point localizacionPadre;
@@ -109,6 +178,7 @@ public class InterfazDirectorioContactos extends JFrame {
         }
         return new Point(x, y);
     }
+
     public void cerrarVentana() {
         int response = JOptionPane.showOptionDialog(this, "Desea cerrar la ventana",
                 "Cerrar Ventana",
@@ -120,15 +190,14 @@ public class InterfazDirectorioContactos extends JFrame {
             dispose();
         }
     }
+
     public static void main(String[] args) {
-        try{
+        try {
             InterfazDirectorioContactos gui = new InterfazDirectorioContactos();
             gui.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch( Exception e ){
-            e.printStackTrace( );
-        }
-            
-     
+
     }
 }
