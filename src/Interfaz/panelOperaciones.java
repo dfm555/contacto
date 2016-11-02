@@ -90,31 +90,31 @@ public class panelOperaciones extends JPanel implements ActionListener {
         if (actionCommand.equals("JERARQUICA")) {
             ventanaPrincipal.mostrarContactosAlfabeticamente();
         }
-         // Boton mostrar estructura jerarquica del arbol
+         // Boton punto 2-a
         if (actionCommand.equals("2(A)")) {
             ventanaPrincipal.abrirDialogoBuscarContacto();
         }
-         // Boton mostrar estructura jerarquica del arbol
+         // Boton punto 2-d
         if (actionCommand.equals("2(D)")) {
             ventanaPrincipal.obtenerElNumeroDeNodosPorNivel();
         }
-         // Boton mostrar estructura jerarquica del arbol
+         // Boton punto 2-e
         if (actionCommand.equals("2(E)")) {
             ventanaPrincipal.mostrarContactosAlfabeticamente();
         }
-         // Boton mostrar estructura jerarquica del arbol
+         // Boton punto 2-f
         if (actionCommand.equals("2(F)")) {
             ventanaPrincipal.mostrarContactosAlfabeticamente();
         }
-         // Boton mostrar estructura jerarquica del arbol
+         // Boton punto 2-g
         if (actionCommand.equals("2(G)")) {
             ventanaPrincipal.mostrarContactosAlfabeticamente();
         }
-         // Boton mostrar estructura jerarquica del arbol
+         // Boton punto 2-h
         if (actionCommand.equals("2(H)")) {
             ventanaPrincipal.mostrarContactosAlfabeticamente();
         }
-         // Boton mostrar estructura jerarquica del arbol
+         // Boton eliminar contacto
         if (actionCommand.equals("ELIMINAR")) {
             ventanaPrincipal.abrirDialogoEliminarContacto();
         }

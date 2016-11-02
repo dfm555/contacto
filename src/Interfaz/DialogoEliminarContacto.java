@@ -12,9 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
-/**
- * Formulario para agregar un libro al cat�logo
- */
+
 public class DialogoEliminarContacto extends JDialog  implements ActionListener{
     private final JLabel lblnombre;
     private final JTextField txtnombre;
