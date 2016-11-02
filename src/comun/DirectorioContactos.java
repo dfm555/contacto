@@ -7,62 +7,30 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class DirectorioContactos {
 
+public class DirectorioContactos {
+   
     private ArrayList directorio;
     private Directorio directorioABB;
-
     public DirectorioContactos() {
         directorio = new ArrayList();
-        directorioABB = new Directorio();
+        directorioABB=new Directorio();
     }
 
-    //metodo para agregar un nuevo contacto
     public void adicionarContactoDirectorio(Contacto nuevoContacto) {
         Contacto contacto = buscarContacto(nuevoContacto.getNombre());
+        System.out.println(nuevoContacto);
         if (contacto == null) {
             directorio.add(nuevoContacto); //agrega contacto al arraylist de contactos
             directorioABB.add(nuevoContacto); //agrega al arbol de directorio abb
         }
     }
-
-    //metodo para mostrar los contactos orden alfabetico
-    public String ordenAlfabetico() {
+    public String ordenAlfabetico(){
         return directorioABB.ordenAlfabetico();
     }
-
-    //metodo para mostrar la estructura jerarquica de un arbol
-    public String jerarquia() {
-        return "metodo jerarquico";
+    public void eliminarContactoDirectorio(Contacto contacto){
+    
     }
-
-    //Metodo Para buscar un contacto por el nombre
-    public String buscarPorNombre(String nombre) {
-        Contacto contacto = directorioABB.buscarPorNombre(nombre);
-        if (contacto != null) {
-            return contacto.toString();
-        }
-        return "No existe el contacto";
-    }
-    //eliminar un contacto
-    public String remove(String nombre) {
-        Contacto contactoEliminar = buscarContacto(nombre);
-        if (null != contactoEliminar) {
-                directorio.remove(contactoEliminar);
-                return "Contacto Eliminado con exitó";
-        }
-        return "No existe el contacto";
-    }
-    //obtener el numero de nodos por nivel
-    public String obtenerNodosPorNivel(){
-        Map<Integer, Integer> niveles = directorioABB.obtenerNodosPorNivel();
-        String nodos = "";
-        for (int i = 0; i < niveles.size(); i++) {
-            nodos+="En el nivel " + i + " hay : " + niveles.get(i) + " nodos.\n";
-        }
-        return nodos;
-    }
-
     public ArrayList getDirectorio() {
         return directorio;
     }
@@ -85,5 +53,6 @@ public class DirectorioContactos {
             return null;
         }
     }
+  
 
 }

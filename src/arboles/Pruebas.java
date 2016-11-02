@@ -10,7 +10,7 @@ import java.util.Map;
 public class Pruebas {
 
     public static void main(String[] args) {
-        Directorio<Contacto> directorio = new Directorio<Contacto>();
+        DirectorioDeContactos<Contacto> directorio = new DirectorioDeContactos<Contacto>();
         directorio.add(new Contacto("Carlos", "3017517366", "Carrera 66", "carlosrestrepo.315@gmail.com"));
         directorio.add(new Contacto("Andres", "3005683327", "Carrera 66", "carlosrestrepo.315@gmail.com"));
         directorio.add(new Contacto("Maria", "3017654567", "Carrera 66", "carlosrestrepo.315@gmail.com"));
@@ -19,11 +19,11 @@ public class Pruebas {
         directorio.add(new Contacto("Yording", "3009893618", "Carrera 66", "carlosrestrepo.315@gmail.com"));
         directorio.add(new Contacto("Oscar", "3197354837", "Carrera 66", "carlosrestrepo.315@gmail.com"));
 
-        Contacto contacto = directorio.buscarPorNombre("Duber");
+        Contacto contacto = directorio.buscarPorNombre("xx");
         System.out.println(contacto != null ? contacto.toString() : "Contacto no encontrado.");
 
         String isa = "Isabel";
-        String maria = "isabel";
+        String maria = "Maria";
 
         System.out.println(isa.compareTo(maria));
 

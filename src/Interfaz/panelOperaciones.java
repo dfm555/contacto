@@ -22,32 +22,19 @@ public class panelOperaciones extends JPanel implements ActionListener {
         btnagregarcontacto = new JButton();
         inicializarOperaciones(btnagregarcontacto, "Agr.Contacto", "AGREGAR");
         
-        btneliminarcontacto = new JButton();
-        inicializarOperaciones(btneliminarcontacto,"Eli.Contacto","ELIMINAR");
+        btneliminarcontacto = new JButton("Eli.Contacto");
+      
         
         btnmostrarcontactos = new JButton();
         inicializarOperaciones(btnmostrarcontactos, "Mos.contactos", "ALFABETICO");
         
-        btnjerarquia = new JButton();
-        inicializarOperaciones(btnjerarquia,"Arb.Jerárquico","JERARQUICA");
-        
-        btnmostrarresultadosa = new JButton();
-        inicializarOperaciones(btnmostrarresultadosa,"Punto 2(a)","2(A)");
-        
-        btnmostrarresultadosd = new JButton();
-        inicializarOperaciones(btnmostrarresultadosd,"Punto 2(d)","2(D)");
-        
-        btnmostrarresultadose = new JButton();
-        inicializarOperaciones(btnmostrarresultadose,"Punto 2(e)","2(E)");
-        
-        btnmostrarresultadosf = new JButton();
-        inicializarOperaciones(btnmostrarresultadosf,"Punto 2(f)","2(F)");
-        
-        btnmostrarresultadosg = new JButton();
-        inicializarOperaciones(btnmostrarresultadosg,"Punto 2(g)","2(G)");
-        
-        btnmostrarresultadosh = new JButton();
-        inicializarOperaciones(btnmostrarresultadosh,"Punto 2(h)","2(H)");
+        btnjerarquia = new JButton("Arb.Jerárquico");
+        btnmostrarresultadosa = new JButton("Punto 2(a)");
+        btnmostrarresultadosd = new JButton("Punto 2(d)");
+        btnmostrarresultadose = new JButton("Punto 2(e)");
+        btnmostrarresultadosf = new JButton("Punto 2(f)");
+        btnmostrarresultadosg = new JButton("Punto 2(g)");
+        btnmostrarresultadosh = new JButton("Punto 2(h)");
 
 
         setLayout(new GridLayout(2, 4));
@@ -85,38 +72,6 @@ public class panelOperaciones extends JPanel implements ActionListener {
         // Boton orden alfabetico
         if (actionCommand.equals("ALFABETICO")) {
             ventanaPrincipal.mostrarContactosAlfabeticamente();
-        }
-         // Boton mostrar estructura jerarquica del arbol
-        if (actionCommand.equals("JERARQUICA")) {
-            ventanaPrincipal.mostrarContactosAlfabeticamente();
-        }
-         // Boton mostrar estructura jerarquica del arbol
-        if (actionCommand.equals("2(A)")) {
-            ventanaPrincipal.abrirDialogoBuscarContacto();
-        }
-         // Boton mostrar estructura jerarquica del arbol
-        if (actionCommand.equals("2(D)")) {
-            ventanaPrincipal.obtenerElNumeroDeNodosPorNivel();
-        }
-         // Boton mostrar estructura jerarquica del arbol
-        if (actionCommand.equals("2(E)")) {
-            ventanaPrincipal.mostrarContactosAlfabeticamente();
-        }
-         // Boton mostrar estructura jerarquica del arbol
-        if (actionCommand.equals("2(F)")) {
-            ventanaPrincipal.mostrarContactosAlfabeticamente();
-        }
-         // Boton mostrar estructura jerarquica del arbol
-        if (actionCommand.equals("2(G)")) {
-            ventanaPrincipal.mostrarContactosAlfabeticamente();
-        }
-         // Boton mostrar estructura jerarquica del arbol
-        if (actionCommand.equals("2(H)")) {
-            ventanaPrincipal.mostrarContactosAlfabeticamente();
-        }
-         // Boton mostrar estructura jerarquica del arbol
-        if (actionCommand.equals("ELIMINAR")) {
-            ventanaPrincipal.abrirDialogoEliminarContacto();
         }
     }
 
