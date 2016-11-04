@@ -1,6 +1,8 @@
 package arboles;
 
 import comun.Contacto;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,26 +87,28 @@ public class DirectorioContactos<E extends Comparable<E>> {
         return false;
     }
 
-    public String ordenAlfabetico() {
-        return ordenAlfabetico(raiz);
+    public ArrayList ordenAlfabetico() {
+
+        ArrayList<E> alfabetico = new ArrayList<E>();
+        return ordenAlfabetico(raiz, alfabetico);
     }
 
     /**
-     * Método que retorne la información de los contactos en orden alfabético.
+     * Punto 2-b. Defina un método que retorne la información de los contactos en orden
+     * alfabético.
      *
      * @param r
+     * @param list
      * @return
      */
-    private String ordenAlfabetico(NodoBinario<E> r) {
-        String resultado = "";
-
+    private ArrayList ordenAlfabetico(NodoBinario<E> r, ArrayList<E> list) {
         if (r != null) {
-            resultado += ordenAlfabetico(r.getHijoIzquierdo());
-            resultado += r.getItem() + " \n";
-            resultado += ordenAlfabetico(r.getHijoDerecho());
+           ordenAlfabetico(r.getHijoIzquierdo(),list);
+            list.add(r.getItem());
+            ordenAlfabetico(r.getHijoDerecho(), list);
         }
 
-        return resultado;
+        return list;
     }
 
     public void jerarquia() {

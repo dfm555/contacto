@@ -23,8 +23,8 @@ public class Directorio {
     }
 
     //metodo para mostrar los contactos orden alfabetico
-    public String ordenAlfabetico() {
-        return directorioABB.ordenAlfabetico();
+    public void ordenAlfabetico() {
+        directorio = directorioABB.ordenAlfabetico();
     }
 
     //metodo para mostrar la estructura jerarquica de un arbol

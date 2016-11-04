@@ -14,6 +14,7 @@ import comun.Contacto;
 import comun.Directorio;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 
 public class InterfazDirectorioContactos extends JFrame {
@@ -117,8 +118,8 @@ public class InterfazDirectorioContactos extends JFrame {
     }
 
     public void mostrarContactosAlfabeticamente() {
-        String resultado = directorio.ordenAlfabetico();
-        panelResultado.mostrarResultado(resultado);
+        directorio.ordenAlfabetico();
+        panelDirectorio.actualizarDirectorio();
     }
 
     public void mostrarJerarquiaArbol() {
