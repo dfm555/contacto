@@ -20,7 +20,7 @@ public class Pruebas {
         directorio.add(new Contacto("Oscar", "3197354837", "Carrera 66", "carlosrestrepo.315@gmail.com"));
 
         Contacto contacto = directorio.buscarPorNombre("Duber");
-        System.out.println(contacto != null ? contacto.toString() : "Contacto no encontrado.");
+        System.out.println(contacto != null ? contacto.toString() : "Contacto no encontrado - " + contacto);
 
         String isa = "Isabel";
         String maria = "isabel";
@@ -35,5 +35,15 @@ public class Pruebas {
         for (int i = 0; i < niveles.size(); i++) {
             System.out.println("En el nivel " + i + " hay : " + niveles.get(i) + " nodos.");
         }
+
+        System.out.println(directorio.ordenAlfabetico());
+
+        //boolean eliminado = directorio.remove("Isabel");
+        /*if (eliminado) {
+            System.out.println(directorio.ordenAlfabetico());
+        }*/
+
+        boolean esCompleto = directorio.esCompleto();
+        System.out.println(esCompleto ? "El árbol es completo." : "El árbol no es completo.");
     }
 }
