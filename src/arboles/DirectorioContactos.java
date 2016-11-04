@@ -7,11 +7,11 @@ import java.util.Map;
 /**
  * Created by duber on 30/10/16.
  */
-public class Directorio<E extends Comparable<E>> {
+public class DirectorioContactos<E extends Comparable<E>> {
 
     private NodoBinario<E> raiz;
 
-    public Directorio() {
+    public DirectorioContactos() {
         raiz = null;
     }
 

@@ -1,7 +1,5 @@
 package Interfaz;
 
-import comun.DirectorioContactos;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

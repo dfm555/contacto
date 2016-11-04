@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import comun.Contacto;
-import comun.DirectorioContactos;
+import comun.Directorio;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -23,13 +23,13 @@ public class InterfazDirectorioContactos extends JFrame {
     private DialogoBuscarContacto dialogoBuscar;
     private DialogoEliminarContacto dialogoEliminar;
     private Contacto contactos;
-    private final DirectorioContactos directorio;
+    private final Directorio directorio;
     private final panelOperaciones panelOperaciones;
     private final panelDatos panelDatos;
 
     public InterfazDirectorioContactos() {
 
-        directorio = new DirectorioContactos();
+        directorio = new Directorio();
 
         JPanel panelSuperior = new JPanel(new BorderLayout());
         JPanel panelCentral = new JPanel(new BorderLayout());
