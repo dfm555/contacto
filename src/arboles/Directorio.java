@@ -39,6 +39,34 @@ public class Directorio<E extends Comparable<E>> {
         }
     }
 
+    private void addAll(NodoBinario<E> r, E item) {
+        if (item.compareTo(r.getItem()) < 0) {
+            if (r.getHijoIzquierdo() == null) {
+                r.setHijoIzquierdo(new NodoBinario<>(item));
+            } else {
+                add(r.getHijoIzquierdo(), item);
+                if (r.getHijoIzquierdo() != null) {
+                    add(r.getHijoIzquierdo().getItem());
+                }
+                if (r.getHijoDerecho() != null) {
+                    add(r.getHijoDerecho().getItem());
+                }
+            }
+        } else if (item.compareTo(r.getItem()) > 0) {
+            if (r.getHijoDerecho() == null) {
+                r.setHijoDerecho(new NodoBinario<>(item));
+            } else {
+                add(r.getHijoDerecho(), item);
+                if (r.getHijoIzquierdo() != null) {
+                    add(r.getHijoIzquierdo().getItem());
+                }
+                if (r.getHijoDerecho() != null) {
+                    add(r.getHijoDerecho().getItem());
+                }
+            }
+        }
+    }
+
     public boolean contains(E item) {
         NodoBinario<E> auxiliar = raiz;
 
@@ -129,14 +157,17 @@ public class Directorio<E extends Comparable<E>> {
 
     /**
      * Punto 2-c. Defina un método que reciba el nombre de un contacto y lo elimine del directorio.
-     * @param contacto
+     * @param nombre
      * @return boolean
      */
-    public boolean remove(E contacto) {  /** Falta revisar nueva asignación de nodos después de eliminar */
+    public boolean remove(String nombre) {  /** Falta revisar nueva asignación de nodos después de eliminar */
         NodoBinario<E> aux = raiz;
         NodoBinario<E> nodoPadre = aux;
+
+        Contacto contacto = new Contacto();
+        contacto.setNombre(nombre);
         while (aux != null) {
-            int diferencia = ((Contacto) contacto).compareTo((Contacto) aux.getItem());
+            int diferencia = contacto.compareTo((Contacto) aux.getItem());
             if (diferencia < 0) {
                 nodoPadre = aux;
                 aux = aux.getHijoIzquierdo();
@@ -144,10 +175,17 @@ public class Directorio<E extends Comparable<E>> {
                 nodoPadre = aux;
                 aux = aux.getHijoDerecho();
             } else {
-                if (nodoPadre.getItem().compareTo(aux.getItem()) < 0) {
-                    nodoPadre.setHijoDerecho(null);
-                } else {
+                if (contacto.compareTo((Contacto) nodoPadre.getItem()) < 0) {
                     nodoPadre.setHijoIzquierdo(null);
+                } else {
+                    nodoPadre.setHijoDerecho(null);
+                }
+                // Se vuelven a agregar los nodos que eran hijos del nodo eliminado
+                if (aux.getHijoIzquierdo() != null) {
+                    addAll(nodoPadre, aux.getHijoIzquierdo().getItem());
+                }
+                if (aux.getHijoDerecho() != null) {
+                    addAll(nodoPadre, aux.getHijoDerecho().getItem());
                 }
                 return true;
             }
