@@ -209,6 +209,21 @@ public class Directorio<E extends Comparable<E>> {
         }
         return niveles;
     }
-    
-    
+
+    /**
+     * Punto 2-h. Defina un método que retorne true si el árbol es completo.
+     * Un árbol es completo si todos sus niveles tienen el número máximo de elementos.
+     * @return boolean
+     */
+    public boolean esCompleto() {
+        Map<Integer, Integer> nodosPorNivel = this.obtenerNodosPorNivel();
+        if (!nodosPorNivel.isEmpty()) {
+            for (int i = 0; i < nodosPorNivel.size(); i++) {
+                if (nodosPorNivel.get(i).doubleValue() != Math.pow(2, (long) i)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

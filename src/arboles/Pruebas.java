@@ -38,9 +38,12 @@ public class Pruebas {
 
         System.out.println(directorio.ordenAlfabetico());
 
-        boolean eliminado = directorio.remove("Isabel");
-        if (eliminado) {
+        //boolean eliminado = directorio.remove("Isabel");
+        /*if (eliminado) {
             System.out.println(directorio.ordenAlfabetico());
-        }
+        }*/
+
+        boolean esCompleto = directorio.esCompleto();
+        System.out.println(esCompleto ? "El árbol es completo." : "El árbol no es completo.");
     }
 }
