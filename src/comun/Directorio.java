@@ -1,20 +1,16 @@
 package comun;
 
-import arboles.Directorio;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
-public class DirectorioContactos {
+public class Directorio {
 
     private ArrayList directorio;
-    private Directorio directorioABB;
+    private arboles.DirectorioContactos directorioABB;
 
-    public DirectorioContactos() {
+    public Directorio() {
         directorio = new ArrayList();
-        directorioABB = new Directorio();
+        directorioABB = new arboles.DirectorioContactos();
     }
 
     //metodo para agregar un nuevo contacto
