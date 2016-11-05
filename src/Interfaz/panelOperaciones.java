@@ -110,7 +110,7 @@ public class panelOperaciones extends JPanel implements ActionListener {
         }
          // Boton punto 2-h
         if (actionCommand.equals("2(H)")) {
-            ventanaPrincipal.mostrarContactosAlfabeticamente();
+            ventanaPrincipal.elArbolEsCompleto();
         }
          // Boton eliminar contacto
         if (actionCommand.equals("ELIMINAR")) {

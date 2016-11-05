@@ -41,13 +41,19 @@ public class Directorio {
         return "No existe el contacto";
     }
     //eliminar un contacto
-    public String remove(String nombre) {
-        Contacto contactoEliminar = buscarContacto(nombre);
-        if (null != contactoEliminar) {
-                directorio.remove(contactoEliminar);
-                return "Contacto Eliminado con exitó";
+    public boolean remove(String nombre) {
+        boolean eliminar = directorioABB.remove(nombre);
+        if (eliminar) {
+                directorio.remove(buscarContacto(nombre));
+                return eliminar;
         }
-        return "No existe el contacto";
+        return eliminar;
+    }
+    public String esCompleto(){
+        boolean res = directorioABB.esCompleto();
+        if(res)
+            return "El árbol es completo";
+        return "El árbol es incompleto";
     }
     //obtener el numero de nodos por nivel
     public String obtenerNodosPorNivel(){

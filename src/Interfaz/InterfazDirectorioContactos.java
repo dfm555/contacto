@@ -142,10 +142,21 @@ public class InterfazDirectorioContactos extends JFrame {
     }
 
     public void eliminarContactoDirectorio(String nombre) {
-        String resultado = directorio.remove(nombre);
-        panelResultado.mostrarResultado(resultado);
-        panelDirectorio.actualizarDirectorio();
+        boolean resultado = directorio.remove(nombre);
+        if(resultado){
+            panelResultado.mostrarResultado("El contacto se eliminó sastisfactoriamente");
+            panelDirectorio.actualizarDirectorio();
+        }
+        else{
+            panelResultado.mostrarResultado("El contacto no existe");
+        }
         
+       
+        
+    }
+    public void elArbolEsCompleto(){
+        String resultado = directorio.esCompleto();
+        panelResultado.mostrarResultado(resultado);
     }
     public void obtenerElNumeroDeNodosPorNivel(){
         String resultado = directorio.obtenerNodosPorNivel();

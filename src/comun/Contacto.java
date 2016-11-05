@@ -51,7 +51,7 @@ public class Contacto implements Comparable<Contacto> {
         this.email = email;
     }
     public boolean igualContacto(String otroNombre) {
-        boolean iguales = nombre.equals(otroNombre);
+        boolean iguales = nombre.toLowerCase().equals(otroNombre.toLowerCase());
         return iguales;
     }
     @Override
