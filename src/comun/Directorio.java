@@ -29,7 +29,7 @@ public class Directorio {
 
     //metodo para mostrar la estructura jerarquica de un arbol
     public String jerarquia() {
-        return "metodo jerarquico";
+        return directorioABB.jerarquia();
     }
 
     //Metodo Para buscar un contacto por el nombre

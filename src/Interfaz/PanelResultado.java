@@ -2,26 +2,26 @@ package Interfaz;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 public class PanelResultado extends JPanel {
 
-    private JLabel lblresultado;
+    private JTextArea jTextPaneResult;
     private InterfazDirectorioContactos ventanaprincipal;
     public PanelResultado(InterfazDirectorioContactos interfaz) {
         
         ventanaprincipal=interfaz;
-        lblresultado = new JLabel("", SwingConstants.CENTER);
+        jTextPaneResult = new JTextArea(7, 60);
+        JScrollPane scroll = new JScrollPane (jTextPaneResult,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         setLayout(new FlowLayout());
         setBorder(BorderFactory.createTitledBorder("Resultados"));
-        add(lblresultado);
+        add(scroll);
+        jTextPaneResult.setEditable(false);
     }
 
     public void mostrarResultado(String results) {
-        lblresultado.setText(results);
+        jTextPaneResult.setText(results);
     }
 }

@@ -111,25 +111,36 @@ public class DirectorioContactos<E extends Comparable<E>> {
         return list;
     }
 
-    public void jerarquia() {
-        jerarquia(raiz, "");
+    public String jerarquia(){
+        return jerarquia(raiz, "");
     }
 
     /**
-     * Mostrar la estructura jerárquica del árbol
+     * Punto 3-d Mostrar la estructura jerárquica del árbol
      *
-     * @param r
-     * @param espacio
+     * @param node
+     * @param specialChar
+     * @return
      */
-    private void jerarquia(NodoBinario<E> r, String espacio) {
-        if (r != null) {
-            jerarquia(r.getHijoDerecho(), espacio + "    ");
-            System.out.println(espacio + r.getItem());
-            jerarquia(r.getHijoIzquierdo(), espacio + "    ");
+
+    private String jerarquia(NodoBinario<E> node, String specialChar){
+        if(node != null){
+            String nodeString = specialChar + node.getItem().toString() + "\n";
+            specialChar = "\t" + specialChar;
+            if(node.hasLeftChild()){
+                nodeString += jerarquia(node.getHijoIzquierdo(), specialChar);
+            }
+            if(node.hasRightChild()){
+                nodeString += jerarquia(node.getHijoDerecho(), specialChar);
+            }
+            return nodeString;
         }
+
+        return "No existe el arbol";
     }
-    
-     /**
+
+
+    /**
      * Punto 2-a. Defina un método que retorne un contacto dado su nombre.
      * En caso de no encontrarlo debe retornar null.
      * @param nombre

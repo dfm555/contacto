@@ -83,4 +83,17 @@ public class NodoBinario<E> {
     public boolean esHoja() {
         return hijoIzquierdo == null && hijoDerecho == null;
     }
+
+
+    public boolean hasRightChild() {
+        return this.hijoDerecho != null;
+    }
+
+    public boolean hasLeftChild() {
+        return this.hijoIzquierdo != null;
+    }
+
+
+
+
 }
