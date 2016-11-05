@@ -69,7 +69,7 @@ public class InterfazDirectorioContactos extends JFrame {
     }
      public void eliminarContacto() {
          try {
-                //Busca el �tem a borrar
+               
                 int filaSeleccionada = panelDirectorio.getTablaDirectorio().getSelectedRow();
 
                 if (filaSeleccionada == -1) {
@@ -79,7 +79,6 @@ public class InterfazDirectorioContactos extends JFrame {
 
                 Contacto contacto = (Contacto) panelDirectorio.getTablaDirectorio().getValueAt(filaSeleccionada, -1);
 
-                //Borra el elemento
                 boolean res = directorio.remove(contacto.getNombre());
                 if(res){
                     panelDirectorio.actualizarDirectorio();
