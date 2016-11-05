@@ -114,7 +114,7 @@ public class panelOperaciones extends JPanel implements ActionListener {
         }
          // Boton eliminar contacto
         if (actionCommand.equals("ELIMINAR")) {
-            ventanaPrincipal.abrirDialogoEliminarContacto();
+            ventanaPrincipal.eliminarContacto();
         }
     }
 
