@@ -10,3 +10,4 @@ out
 *.xml
 *.mf
 nbproject/
+/dist/

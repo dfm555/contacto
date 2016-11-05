@@ -1,25 +1,15 @@
 package Interfaz;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import comun.Contacto;
-import comun.DirectorioContactos;
+import comun.Directorio;
 
 public class PanelDirectorioContactos extends JPanel {
 
@@ -28,7 +18,7 @@ public class PanelDirectorioContactos extends JPanel {
     private JScrollPane desplazamientoPanel;
     private InterfazDirectorioContactos ventanaPrincipal;
 
-    public PanelDirectorioContactos(InterfazDirectorioContactos interfaz, DirectorioContactos directorioContactos) {
+    public PanelDirectorioContactos(InterfazDirectorioContactos interfaz, Directorio directorioContactos) {
         ventanaPrincipal = interfaz;
 
         setLayout(new BorderLayout());
@@ -44,7 +34,9 @@ public class PanelDirectorioContactos extends JPanel {
         add(desplazamientoPanel, BorderLayout.CENTER);
 
     }
-
+    public JTable getTablaDirectorio(){
+        return tablaDirectorio;
+    }
     public void actualizarDirectorio() {
         directorio.fireTableDataChanged();
     }

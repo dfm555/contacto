@@ -1,21 +1,18 @@
 package Interfaz;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-
 import javax.swing.table.AbstractTableModel;
 
 import comun.Contacto;
-import comun.DirectorioContactos;
+import comun.Directorio;
+import javax.swing.JTable;
 
 
 public class TablaModeloDirectorio extends AbstractTableModel {
 
   
     private String[] nombresColumnas;
-    private DirectorioContactos directorio;
-
-    public TablaModeloDirectorio(DirectorioContactos unDirectorio) {
+    private Directorio directorio;
+    public TablaModeloDirectorio(Directorio unDirectorio) {
         super();
         directorio = unDirectorio;
         String[] nombresColumnasAux = {"Nombre", "Telefono", "Postal", "Email"};
