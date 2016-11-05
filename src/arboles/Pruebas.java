@@ -36,7 +36,7 @@ public class Pruebas {
             System.out.println("En el nivel " + i + " hay : " + niveles.get(i) + " nodos.");
         }
 
-        System.out.println(directorio.ordenAlfabetico());
+        System.out.println("Holi"+directorio.ordenAlfabetico());
 
         //boolean eliminado = directorio.remove("Isabel");
         /*if (eliminado) {
