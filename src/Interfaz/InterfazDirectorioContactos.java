@@ -23,6 +23,7 @@ public class InterfazDirectorioContactos extends JFrame {
     private final PanelResultado panelResultado;
     private DialogoBuscarContacto dialogoBuscar;
     private DialogoBuscarContactoPorEmail dialogoBuscarPorEmail;
+    private DialogoBuscarContactoPorCadena dialogoBuscarPorCadena;
     private Contacto contactos;
     private final Directorio directorio;
     private final panelOperaciones panelOperaciones;
@@ -44,6 +45,7 @@ public class InterfazDirectorioContactos extends JFrame {
         panelInferior.add(panelOperaciones, BorderLayout.CENTER);
         dialogoBuscar = new DialogoBuscarContacto(this );
         dialogoBuscarPorEmail = new DialogoBuscarContactoPorEmail(this );
+        dialogoBuscarPorCadena = new DialogoBuscarContactoPorCadena(this );
         setPreferredSize(new Dimension(700, 500));
 
         add(panelSuperior, BorderLayout.NORTH);
@@ -74,6 +76,11 @@ public class InterfazDirectorioContactos extends JFrame {
         dialogoBuscarPorEmail.setLocation(calculaPosicionCentral(this, dialogoBuscarPorEmail));
         dialogoBuscarPorEmail.setVisible(true);
         dialogoBuscarPorEmail.setModal(true);
+    }
+     public void abrirDialogoBuscarContactoPorCadena() {
+        dialogoBuscarPorCadena.setLocation(calculaPosicionCentral(this, dialogoBuscarPorCadena));
+        dialogoBuscarPorCadena.setVisible(true);
+        dialogoBuscarPorCadena.setModal(true);
     }
      public void eliminarContacto() {
          try {
@@ -157,6 +164,10 @@ public class InterfazDirectorioContactos extends JFrame {
         String resultado = directorio.buscarPorEmail(email);
         panelResultado.mostrarResultado(resultado);
     }
+     public void buscarContactoPorCadena(String cadena) {
+        String resultado = directorio.buscarPorEmail(cadena);
+        panelResultado.mostrarResultado(resultado);
+    }
     public boolean existeContacto(String nombre) {
         boolean esta = false;
         Contacto contactoObtenido = directorio.buscarContacto(nombre);
@@ -185,6 +196,10 @@ public class InterfazDirectorioContactos extends JFrame {
     }
     public void obtenerElNumeroDeNodosPorNivel(){
         String resultado = directorio.obtenerNodosPorNivel();
+        panelResultado.mostrarResultado(resultado);
+    }
+    public void buscarContactosConEmailInvalido(){
+        String resultado = directorio.contactosConEmailInvalido();
         panelResultado.mostrarResultado(resultado);
     }
     private Point calculaPosicionCentral(Component componentePadre, Component componenteHijo) {

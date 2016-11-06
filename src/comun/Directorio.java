@@ -95,5 +95,15 @@ public class Directorio {
         }
         return "No existe un contacto con email indicado";
     }
+     public String buscarPorCadena(String cadena){
+        NodoBinario contacto = directorioABB.buscarPorCadena(cadena);
+        if (contacto != null) {
+            return contacto.getItem().toString();
+        }
+        return "No existe un contacto con cadena indicada";
+    }
+    public String contactosConEmailInvalido(){
+        return directorioABB.contactosConEmailInvalido();
+    }
 
 }
