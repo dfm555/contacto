@@ -18,6 +18,12 @@ public class Pruebas {
         directorio.add(new Contacto("Duber", "3186490021", "Esquina 15", "duber@gmail.com"));
         directorio.add(new Contacto("Yording", "3009893618", "El callejón", "yording@gmail.com"));
         directorio.add(new Contacto("Oscar", "3197354837", "Transversal superior", "OSCAR@gmail.com"));
+        directorio.add(new Contacto("Alex", "123", "Transversal inferior", "alex@gmail.com"));
+        directorio.add(new Contacto("Antonio", "123", "Dir 2", "antonio@gmail.com"));
+        directorio.add(new Contacto("Pablo", "45345", "Carrera 36", "pablo@gmail.comm"));
+        directorio.add(new Contacto("Aurora", "45345", "Carrera 36", "aurora@gmail.com"));
+        directorio.add(new Contacto("aleja", "45345", "Carrera 36", "aleja@gmail.com"));
+        directorio.add(new Contacto("alejo", "45345", "Carrera 36", "alejo@gmail.com"));
 
         System.out.println("Prueba - Buscar por nombre:");
         Contacto contacto = directorio.buscarPorNombre("Duber");
@@ -55,7 +61,8 @@ public class Pruebas {
         System.out.println(esCompleto ? "El árbol es completo." : "El árbol no es completo.");
 
         System.out.println("\nPrueba - Buscar por email:");
-        NodoBinario<Contacto> contactoPorEmail = directorio.buscarPorEmail("OScAR@gmail.com");
+        NodoBinario<Contacto> contactoPorEmail = directorio.buscarPorEmail("OSCAR@gmail.com");
+        //NodoBinario<Contacto> contactoPorEmail = directorio.buscarPorEmail("alejo@gmail.com");
         System.out.println(contactoPorEmail != null ? contactoPorEmail.getItem().toString() : "Contacto no encontrado - " + contactoPorEmail);
 
         System.out.println("\nPrueba - Nodos por cadena:");

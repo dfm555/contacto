@@ -2,9 +2,7 @@ package arboles;
 
 import comun.Contacto;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by duber on 30/10/16.
@@ -245,34 +243,32 @@ public class DirectorioContactos<E extends Comparable<E>> {
     /**
      * Punto 2-e. Defina un método que busque un nodo dado su mail y lo retorne.
      * En caso de no encontrarlo debe retornar null.
+     * Este método recorre el árbol por nivel y retorna el nodo en caso de que encuentre un email al comparar sin importar mayúsculas y minúsculas.
      * @param email
      * @return NodoBinario<E>
      */
     public NodoBinario<E> buscarPorEmail(String email) {
-        if (email != null && !email.isEmpty()) {
-            NodoBinario<E> aux = raiz;
-            NodoBinario<E> prev = aux;
-            while (aux != null) {
+        if (email != null && !email.isEmpty() && raiz != null) {
+
+            Queue<NodoBinario<E>> cola = new LinkedList<NodoBinario<E>>();
+            Queue<NodoBinario<E>> colaAux = new LinkedList<NodoBinario<E>>();
+            NodoBinario<E> aux;
+
+            cola.add(raiz);
+            while (!cola.isEmpty()) {
+                colaAux.add(aux = cola.poll());
+
                 Contacto contactoNodo = (Contacto) aux.getItem();
                 String emailNodo = contactoNodo.getEmail();
-                if (emailNodo != null && !emailNodo.isEmpty() && emailNodo.equals(email)) {
+
+                if (emailNodo != null && emailNodo.equalsIgnoreCase(email)) {
                     return aux;
                 } else {
-                    if (aux.getHijoIzquierdo() == null) {
-                        aux = aux.getHijoDerecho();
-                    } else {
-                        prev = aux.getHijoIzquierdo();
-                        while (prev.getHijoDerecho() != null && prev.getHijoDerecho() != aux) {
-                            prev = prev.getHijoDerecho();
-                        }
-                        if (prev.getHijoDerecho() == null) {
-                            //prev.setHijoDerecho(aux);
-                            aux = aux.getHijoIzquierdo();
-                        } else {
-                            //prev.setHijoDerecho(null);
-                            aux = aux.getHijoDerecho();
-                        }
-
+                    if (aux.getHijoIzquierdo() != null) {
+                        cola.add(aux.getHijoIzquierdo());
+                    }
+                    if (aux.getHijoDerecho() != null) {
+                        cola.add(aux.getHijoDerecho());
                     }
                 }
             }
@@ -287,14 +283,21 @@ public class DirectorioContactos<E extends Comparable<E>> {
      * @return NodoBinario<E>
      */
     public NodoBinario<E> buscarPorCadena(String cadena) {
-        if (cadena != null && !cadena.isEmpty()) {
-            NodoBinario<E> aux = raiz;
-            NodoBinario<E> prev = aux;
-            while (aux != null) {
+        if (cadena != null && !cadena.isEmpty() && raiz != null) {
+
+            Queue<NodoBinario<E>> cola = new LinkedList<NodoBinario<E>>();
+            Queue<NodoBinario<E>> colaAux = new LinkedList<NodoBinario<E>>();
+            NodoBinario<E> aux;
+
+            cola.add(raiz);
+            while (!cola.isEmpty()) {
+                colaAux.add(aux = cola.poll());
+
                 Contacto contactoNodo = (Contacto) aux.getItem();
                 String nombreNodo = contactoNodo.getNombre();
                 String emailNodo = contactoNodo.getEmail();
                 String direccionNodo = contactoNodo.getDireccionPostal();
+
                 if (nombreNodo != null && !nombreNodo.isEmpty() && nombreNodo.contains(cadena)) {
                     return aux;
                 } else if (emailNodo != null && !emailNodo.isEmpty() && emailNodo.contains(cadena)) {
@@ -302,21 +305,11 @@ public class DirectorioContactos<E extends Comparable<E>> {
                 } else if (direccionNodo != null && !direccionNodo.isEmpty() && direccionNodo.contains(cadena)) {
                     return aux;
                 } else {
-                    if (aux.getHijoIzquierdo() == null) {
-                        aux = aux.getHijoDerecho();
-                    } else {
-                        prev = aux.getHijoIzquierdo();
-                        while (prev.getHijoDerecho() != null && prev.getHijoDerecho() != aux) {
-                            prev = prev.getHijoDerecho();
-                        }
-                        if (prev.getHijoDerecho() == null) {
-                            //prev.setHijoDerecho(aux);
-                            aux = aux.getHijoIzquierdo();
-                        } else {
-                            //prev.setHijoDerecho(null);
-                            aux = aux.getHijoDerecho();
-                        }
-
+                    if (aux.getHijoIzquierdo() != null) {
+                        cola.add(aux.getHijoIzquierdo());
+                    }
+                    if (aux.getHijoDerecho() != null) {
+                        cola.add(aux.getHijoDerecho());
                     }
                 }
             }
