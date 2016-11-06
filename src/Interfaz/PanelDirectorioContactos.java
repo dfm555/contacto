@@ -34,7 +34,9 @@ public class PanelDirectorioContactos extends JPanel {
         add(desplazamientoPanel, BorderLayout.CENTER);
 
     }
-
+    public JTable getTablaDirectorio(){
+        return tablaDirectorio;
+    }
     public void actualizarDirectorio() {
         directorio.fireTableDataChanged();
     }

@@ -22,12 +22,10 @@ public class InterfazDirectorioContactos extends JFrame {
     private final PanelDirectorioContactos panelDirectorio;
     private final PanelResultado panelResultado;
     private DialogoBuscarContacto dialogoBuscar;
-    private DialogoEliminarContacto dialogoEliminar;
     private Contacto contactos;
     private final Directorio directorio;
     private final panelOperaciones panelOperaciones;
     private final panelDatos panelDatos;
-
     public InterfazDirectorioContactos() {
 
         directorio = new Directorio();
@@ -44,7 +42,6 @@ public class InterfazDirectorioContactos extends JFrame {
         JPanel panelInferior = new JPanel(new BorderLayout());
         panelInferior.add(panelOperaciones, BorderLayout.CENTER);
         dialogoBuscar = new DialogoBuscarContacto(this );
-        dialogoEliminar = new DialogoEliminarContacto(this );
         setPreferredSize(new Dimension(700, 500));
 
         add(panelSuperior, BorderLayout.NORTH);
@@ -70,10 +67,28 @@ public class InterfazDirectorioContactos extends JFrame {
         dialogoBuscar.setVisible(true);
         dialogoBuscar.setModal(true);
     }
-     public void abrirDialogoEliminarContacto() {
-        dialogoEliminar.setLocation(calculaPosicionCentral(this, dialogoEliminar));
-        dialogoEliminar.setVisible(true);
-        dialogoEliminar.setModal(true);
+     public void eliminarContacto() {
+         try {
+                //Busca el �tem a borrar
+                int filaSeleccionada = panelDirectorio.getTablaDirectorio().getSelectedRow();
+
+                if (filaSeleccionada == -1) {
+                    JOptionPane.showMessageDialog(this, "Debe seleccionar primero un contacto en el directorio para borrarlo", "Directorio de Contactos", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                Contacto contacto = (Contacto) panelDirectorio.getTablaDirectorio().getValueAt(filaSeleccionada, -1);
+
+                //Borra el elemento
+                boolean res = directorio.remove(contacto.getNombre());
+                if(res){
+                    panelDirectorio.actualizarDirectorio();
+                    panelResultado.mostrarResultado("El contacto se eliminó sastisfactoriamente");
+                }
+            } catch (Exception e2) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar primero un contacto en el directorio para borrarlo", "Directorio de Contactos", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
     }
     public void adicionarContactoDirectorio() {
         String nombre, telefono, postal, email;
@@ -142,10 +157,21 @@ public class InterfazDirectorioContactos extends JFrame {
     }
 
     public void eliminarContactoDirectorio(String nombre) {
-        String resultado = directorio.remove(nombre);
-        panelResultado.mostrarResultado(resultado);
-        panelDirectorio.actualizarDirectorio();
+        boolean resultado = directorio.remove(nombre);
+        if(resultado){
+            panelResultado.mostrarResultado("El contacto se eliminó sastisfactoriamente");
+            panelDirectorio.actualizarDirectorio();
+        }
+        else{
+            panelResultado.mostrarResultado("El contacto no existe");
+        }
         
+       
+        
+    }
+    public void elArbolEsCompleto(){
+        String resultado = directorio.esCompleto();
+        panelResultado.mostrarResultado(resultado);
     }
     public void obtenerElNumeroDeNodosPorNivel(){
         String resultado = directorio.obtenerNodosPorNivel();

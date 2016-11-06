@@ -86,7 +86,7 @@ public class panelOperaciones extends JPanel implements ActionListener {
         }
          // Boton mostrar estructura jerarquica del arbol
         if (actionCommand.equals("JERARQUICA")) {
-            ventanaPrincipal.mostrarContactosAlfabeticamente();
+            ventanaPrincipal.mostrarJerarquiaArbol();
         }
          // Boton punto 2-a
         if (actionCommand.equals("2(A)")) {
@@ -110,11 +110,11 @@ public class panelOperaciones extends JPanel implements ActionListener {
         }
          // Boton punto 2-h
         if (actionCommand.equals("2(H)")) {
-            ventanaPrincipal.mostrarContactosAlfabeticamente();
+            ventanaPrincipal.elArbolEsCompleto();
         }
          // Boton eliminar contacto
         if (actionCommand.equals("ELIMINAR")) {
-            ventanaPrincipal.abrirDialogoEliminarContacto();
+            ventanaPrincipal.eliminarContacto();
         }
     }
 

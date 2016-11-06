@@ -4,6 +4,7 @@ import javax.swing.table.AbstractTableModel;
 
 import comun.Contacto;
 import comun.Directorio;
+import javax.swing.JTable;
 
 
 public class TablaModeloDirectorio extends AbstractTableModel {
@@ -11,7 +12,6 @@ public class TablaModeloDirectorio extends AbstractTableModel {
   
     private String[] nombresColumnas;
     private Directorio directorio;
-
     public TablaModeloDirectorio(Directorio unDirectorio) {
         super();
         directorio = unDirectorio;
