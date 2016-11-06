@@ -151,7 +151,7 @@ public class DirectorioContactos<E extends Comparable<E>> {
     }
 
     private Contacto buscarPorNombre(String nombre, NodoBinario<E> nodo) {
-        if (nodo != null && nombre != null) {
+        if (nodo != null && nombre != null && !nombre.isEmpty()) {
             Contacto temp = new Contacto();
             temp.setNombre(nombre);
             int diferencia = temp.compareTo((Contacto) nodo.getItem());
@@ -240,5 +240,108 @@ public class DirectorioContactos<E extends Comparable<E>> {
             }
         }
         return true;
+    }
+
+    /**
+     * Punto 2-e. Defina un método que busque un nodo dado su mail y lo retorne.
+     * En caso de no encontrarlo debe retornar null.
+     * @param email
+     * @return NodoBinario<E>
+     */
+    public NodoBinario<E> buscarPorEmail(String email) {
+        if (email != null && !email.isEmpty()) {
+            NodoBinario<E> aux = raiz;
+            NodoBinario<E> prev = aux;
+            while (aux != null) {
+                Contacto contactoNodo = (Contacto) aux.getItem();
+                String emailNodo = contactoNodo.getEmail();
+                if (emailNodo != null && !emailNodo.isEmpty() && emailNodo.equals(email)) {
+                    return aux;
+                } else {
+                    if (aux.getHijoIzquierdo() == null) {
+                        aux = aux.getHijoDerecho();
+                    } else {
+                        prev = aux.getHijoIzquierdo();
+                        while (prev.getHijoDerecho() != null && prev.getHijoDerecho() != aux) {
+                            prev = prev.getHijoDerecho();
+                        }
+                        if (prev.getHijoDerecho() == null) {
+                            //prev.setHijoDerecho(aux);
+                            aux = aux.getHijoIzquierdo();
+                        } else {
+                            //prev.setHijoDerecho(null);
+                            aux = aux.getHijoDerecho();
+                        }
+
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Punto 2-f. Defina un método que reciba una cadena de búsqueda y retorne el primer nodo que contenga esa cadena en nombre, mail o dirección.
+     * En caso de no encontrar ningún nodo con esa condición, debe retornar null.
+     * @param cadena
+     * @return NodoBinario<E>
+     */
+    public NodoBinario<E> buscarPorCadena(String cadena) {
+        if (cadena != null && !cadena.isEmpty()) {
+            NodoBinario<E> aux = raiz;
+            NodoBinario<E> prev = aux;
+            while (aux != null) {
+                Contacto contactoNodo = (Contacto) aux.getItem();
+                String nombreNodo = contactoNodo.getNombre();
+                String emailNodo = contactoNodo.getEmail();
+                String direccionNodo = contactoNodo.getDireccionPostal();
+                if (nombreNodo != null && !nombreNodo.isEmpty() && nombreNodo.contains(cadena)) {
+                    return aux;
+                } else if (emailNodo != null && !emailNodo.isEmpty() && emailNodo.contains(cadena)) {
+                    return aux;
+                } else if (direccionNodo != null && !direccionNodo.isEmpty() && direccionNodo.contains(cadena)) {
+                    return aux;
+                } else {
+                    if (aux.getHijoIzquierdo() == null) {
+                        aux = aux.getHijoDerecho();
+                    } else {
+                        prev = aux.getHijoIzquierdo();
+                        while (prev.getHijoDerecho() != null && prev.getHijoDerecho() != aux) {
+                            prev = prev.getHijoDerecho();
+                        }
+                        if (prev.getHijoDerecho() == null) {
+                            //prev.setHijoDerecho(aux);
+                            aux = aux.getHijoIzquierdo();
+                        } else {
+                            //prev.setHijoDerecho(null);
+                            aux = aux.getHijoDerecho();
+                        }
+
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Punto 2-g. Defina un método que retorne un mensaje indicando los contactos con mail inválido (sin @ o que no terminen en .com o .edu.co)
+     * @return String Contactos con email inválido
+     */
+    public String contactosConEmailInvalido() {
+        return contactosConEmailInvalido(raiz, new StringBuilder());
+    }
+
+    private String contactosConEmailInvalido(NodoBinario<E> nodo, StringBuilder mensaje) {
+        if (nodo != null) {
+            Contacto contactoNodo = (Contacto) nodo.getItem();
+            String emailNodo = contactoNodo.getEmail();
+            if (emailNodo == null || emailNodo.isEmpty() || !emailNodo.contains("@") || !(emailNodo.endsWith(".com") || emailNodo.endsWith(".edu.co"))) {
+                mensaje.append("El contacto " + contactoNodo.getNombre() + " tiene email inválido: " + emailNodo + "\n");
+            }
+            contactosConEmailInvalido(nodo.getHijoIzquierdo(), mensaje);
+            contactosConEmailInvalido(nodo.getHijoDerecho(), mensaje);
+        }
+        return mensaje.toString();
     }
 }

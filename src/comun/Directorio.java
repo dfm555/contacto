@@ -1,5 +1,6 @@
 package comun;
 
+import arboles.NodoBinario;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class Directorio {
         if (contacto != null) {
             return contacto.toString();
         }
-        return "No existe el contacto";
+        return "No existe el contacto con el nombre indicado";
     }
     //eliminar un contacto
     public boolean remove(String nombre) {
@@ -86,6 +87,23 @@ public class Directorio {
         } else {
             return null;
         }
+    }
+    public String buscarPorEmail(String email){
+        NodoBinario contacto = directorioABB.buscarPorEmail(email);
+        if (contacto != null) {
+            return contacto.getItem().toString();
+        }
+        return "No existe un contacto con email indicado";
+    }
+     public String buscarPorCadena(String cadena){
+        NodoBinario contacto = directorioABB.buscarPorCadena(cadena);
+        if (contacto != null) {
+            return contacto.getItem().toString();
+        }
+        return "No existe un contacto con cadena indicada";
+    }
+    public String contactosConEmailInvalido(){
+        return directorioABB.contactosConEmailInvalido();
     }
 
 }
