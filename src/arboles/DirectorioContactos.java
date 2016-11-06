@@ -140,7 +140,7 @@ public class DirectorioContactos<E extends Comparable<E>> {
     }
 
     private Contacto buscarPorNombre(String nombre, NodoBinario<E> nodo) {
-        if (nodo != null && nombre != null) {
+        if (nodo != null && nombre != null && !nombre.isEmpty()) {
             Contacto temp = new Contacto();
             temp.setNombre(nombre);
             int diferencia = temp.compareTo((Contacto) nodo.getItem());
@@ -229,5 +229,43 @@ public class DirectorioContactos<E extends Comparable<E>> {
             }
         }
         return true;
+    }
+
+    /**
+     * Punto 2-e. Defina un método que busque un nodo dado su mail y lo retorne.
+     * En caso de no encontrarlo debe retornar null.
+     * @param email
+     * @return Contacto
+     */
+    public NodoBinario<E> buscarPorEmail(String email) {
+        if (email != null && !email.isEmpty()) {
+            NodoBinario<E> aux = raiz;
+            NodoBinario<E> prev = aux;
+            while (aux != null) {
+                Contacto contactoNodo = (Contacto) aux.getItem();
+                String emailNodo = contactoNodo.getEmail();
+                if (emailNodo != null && !emailNodo.isEmpty() && emailNodo.equals(email)) {
+                    return aux;
+                } else {
+                    if (aux.getHijoIzquierdo() == null) {
+                        aux = aux.getHijoDerecho();
+                    } else {
+                        prev = aux.getHijoIzquierdo();
+                        while (prev.getHijoDerecho() != null && prev.getHijoDerecho() != aux) {
+                            prev = prev.getHijoDerecho();
+                        }
+                        if (prev.getHijoDerecho() == null) {
+                            prev.setHijoDerecho(aux);
+                            aux = aux.getHijoIzquierdo();
+                        } else {
+                            prev.setHijoDerecho(null);
+                            aux = aux.getHijoDerecho();
+                        }
+
+                    }
+                }
+            }
+        }
+        return null;
     }
 }
