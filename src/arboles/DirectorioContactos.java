@@ -39,30 +39,18 @@ public class DirectorioContactos<E extends Comparable<E>> {
         }
     }
 
-    private void addAll(NodoBinario<E> r, E item) {
-        if (item.compareTo(r.getItem()) < 0) {
+    private void addAll(NodoBinario<E> r, NodoBinario<E> nuevoNodo) {
+        if (nuevoNodo.getItem().compareTo(r.getItem()) < 0) {
             if (r.getHijoIzquierdo() == null) {
-                r.setHijoIzquierdo(new NodoBinario<>(item));
+                r.setHijoIzquierdo(nuevoNodo);
             } else {
-                add(r.getHijoIzquierdo(), item);
-                if (r.getHijoIzquierdo() != null) {
-                    add(r.getHijoIzquierdo().getItem());
-                }
-                if (r.getHijoDerecho() != null) {
-                    add(r.getHijoDerecho().getItem());
-                }
+                addAll(r.getHijoIzquierdo(), nuevoNodo);
             }
-        } else if (item.compareTo(r.getItem()) > 0) {
+        } else if (nuevoNodo.getItem().compareTo(r.getItem()) > 0) {
             if (r.getHijoDerecho() == null) {
-                r.setHijoDerecho(new NodoBinario<>(item));
+                r.setHijoDerecho(nuevoNodo);
             } else {
-                add(r.getHijoDerecho(), item);
-                if (r.getHijoIzquierdo() != null) {
-                    add(r.getHijoIzquierdo().getItem());
-                }
-                if (r.getHijoDerecho() != null) {
-                    add(r.getHijoDerecho().getItem());
-                }
+                addAll(r.getHijoDerecho(), nuevoNodo);
             }
         }
     }
@@ -190,15 +178,23 @@ public class DirectorioContactos<E extends Comparable<E>> {
             } else {
                 if (contacto.compareTo((Contacto) nodoPadre.getItem()) < 0) {
                     nodoPadre.setHijoIzquierdo(null);
-                } else {
+                } else if (contacto.compareTo((Contacto) nodoPadre.getItem()) > 0) {
                     nodoPadre.setHijoDerecho(null);
+                } else if (contacto.compareTo((Contacto) raiz.getItem()) == 0) {
+                    if (aux.getHijoDerecho() != null) {
+                        raiz = aux.getHijoDerecho();
+                        nodoPadre = raiz;
+                    } else if (aux.getHijoIzquierdo() != null) {
+                        raiz = aux.getHijoIzquierdo();
+                        nodoPadre = raiz;
+                    }
                 }
                 // Se vuelven a agregar los nodos que eran hijos del nodo eliminado
                 if (aux.getHijoIzquierdo() != null) {
-                    addAll(nodoPadre, aux.getHijoIzquierdo().getItem());
+                    addAll(nodoPadre, aux.getHijoIzquierdo());
                 }
                 if (aux.getHijoDerecho() != null) {
-                    addAll(nodoPadre, aux.getHijoDerecho().getItem());
+                    addAll(nodoPadre, aux.getHijoDerecho());
                 }
                 return true;
             }
