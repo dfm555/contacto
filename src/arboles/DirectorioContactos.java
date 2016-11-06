@@ -111,11 +111,12 @@ public class DirectorioContactos<E extends Comparable<E>> {
 
     private String jerarquia(NodoBinario<E> node, String specialChar){
         if(node != null){
-            String nodeString = specialChar + node.getItem().toString() + "\n";
+            String nodeString = "";
             specialChar = "\t" + specialChar;
             if(node.hasLeftChild()){
                 nodeString += jerarquia(node.getHijoIzquierdo(), specialChar);
             }
+            nodeString += specialChar + node.getItem().toString() + "\n";
             if(node.hasRightChild()){
                 nodeString += jerarquia(node.getHijoDerecho(), specialChar);
             }
