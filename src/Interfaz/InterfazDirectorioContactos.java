@@ -22,6 +22,7 @@ public class InterfazDirectorioContactos extends JFrame {
     private final PanelDirectorioContactos panelDirectorio;
     private final PanelResultado panelResultado;
     private DialogoBuscarContacto dialogoBuscar;
+    private DialogoBuscarContactoPorEmail dialogoBuscarPorEmail;
     private Contacto contactos;
     private final Directorio directorio;
     private final panelOperaciones panelOperaciones;
@@ -42,6 +43,7 @@ public class InterfazDirectorioContactos extends JFrame {
         JPanel panelInferior = new JPanel(new BorderLayout());
         panelInferior.add(panelOperaciones, BorderLayout.CENTER);
         dialogoBuscar = new DialogoBuscarContacto(this );
+        dialogoBuscarPorEmail = new DialogoBuscarContactoPorEmail(this );
         setPreferredSize(new Dimension(700, 500));
 
         add(panelSuperior, BorderLayout.NORTH);
@@ -67,9 +69,15 @@ public class InterfazDirectorioContactos extends JFrame {
         dialogoBuscar.setVisible(true);
         dialogoBuscar.setModal(true);
     }
+     //dialogo para busca contacto
+    public void abrirDialogoBuscarContactoPorEmail() {
+        dialogoBuscarPorEmail.setLocation(calculaPosicionCentral(this, dialogoBuscarPorEmail));
+        dialogoBuscarPorEmail.setVisible(true);
+        dialogoBuscarPorEmail.setModal(true);
+    }
      public void eliminarContacto() {
          try {
-                //Busca el �tem a borrar
+               
                 int filaSeleccionada = panelDirectorio.getTablaDirectorio().getSelectedRow();
 
                 if (filaSeleccionada == -1) {
@@ -79,7 +87,6 @@ public class InterfazDirectorioContactos extends JFrame {
 
                 Contacto contacto = (Contacto) panelDirectorio.getTablaDirectorio().getValueAt(filaSeleccionada, -1);
 
-                //Borra el elemento
                 boolean res = directorio.remove(contacto.getNombre());
                 if(res){
                     panelDirectorio.actualizarDirectorio();
@@ -146,7 +153,10 @@ public class InterfazDirectorioContactos extends JFrame {
         String resultado = directorio.buscarPorNombre(nombre);
         panelResultado.mostrarResultado(resultado);
     }
-
+    public void buscarContactoPorEmail(String email) {
+        String resultado = directorio.buscarPorEmail(email);
+        panelResultado.mostrarResultado(resultado);
+    }
     public boolean existeContacto(String nombre) {
         boolean esta = false;
         Contacto contactoObtenido = directorio.buscarContacto(nombre);
