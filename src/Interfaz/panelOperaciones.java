@@ -98,7 +98,7 @@ public class panelOperaciones extends JPanel implements ActionListener {
         }
          // Boton punto 2-e
         if (actionCommand.equals("2(E)")) {
-            ventanaPrincipal.mostrarContactosAlfabeticamente();
+            ventanaPrincipal.abrirDialogoBuscarContactoPorEmail();
         }
          // Boton punto 2f
         if (actionCommand.equals("2(F)")) {
