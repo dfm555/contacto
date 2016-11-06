@@ -165,7 +165,7 @@ public class InterfazDirectorioContactos extends JFrame {
         panelResultado.mostrarResultado(resultado);
     }
      public void buscarContactoPorCadena(String cadena) {
-        String resultado = directorio.buscarPorEmail(cadena);
+        String resultado = directorio.buscarPorCadena(cadena);
         panelResultado.mostrarResultado(resultado);
     }
     public boolean existeContacto(String nombre) {
